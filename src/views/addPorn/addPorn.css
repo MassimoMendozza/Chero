@@ -1,0 +1,73 @@
+.modalWrapper{
+    display: grid;
+    grid-template-columns: 1em 14em 11em 1em;
+    grid-template-rows: 1em 2.5em 1fr 2.8em 1em;
+    height: 30em;
+}
+.closeButton{
+    margin-left: auto;
+    grid-column: 1/4;
+    grid-row:2;
+}
+.title{
+    grid-column: 2;
+    grid-row:2;
+}
+.FormWrapper{
+    grid-column: 2/4;
+    grid-row: 3;
+}
+.secForm{
+    height: 30em;
+    width: 20em;
+}
+
+.titleField{
+    width: max-content;
+    grid-column: 1;
+}
+.tagField{
+    width: max-content;
+    grid-column: 2;
+}
+.actorsField{
+    width: max-content;
+    grid-column: 3;
+}
+.buttonsRow{
+    grid-row: 4;
+    grid-column: 2/4;
+    display: grid;
+    grid-template-columns: 12em 1fr 8em;
+}
+.bottomButtons{
+    height: 2.8em;
+}
+.messageBar{
+    z-index: 100;
+    grid-column: 1/5;
+}
+.thumb{
+    grid-row: 3;
+    grid-column: 3;
+}
+.thumbWrapper{
+    margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-52%);
+}
+.fetching{
+    grid-row: 1/6;
+    grid-column: 1/5;
+    z-index: 200;
+    background-color: rgba(0,0,0,0.8);
+}
+.fetchingWrapper{
+    margin: 0;
+  position: absolute;
+  top: 47%;
+  transform: translateY(-70%);
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,0 +1,55 @@
+.App { user-select: none; 
+  background-color: #3b0606;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 24pt 1fr;
+}
+.titlebar{
+  -webkit-app-region: drag;line-height: 24pt;
+  grid-row: 1;
+  grid-column: 1/5;
+  color: white;
+}
+.titlebarwrapper{
+  background-color: #0e0101;
+  display: grid;
+  grid-template-columns: 200px 1fr 50px 50px 50px;
+}
+.windowname{
+  grid-column: 1;
+  grid-row: 1;
+  text-align: center;
+}
+.close{
+  
+  grid-column: 5;
+  grid-row: 1;
+  text-align: center;
+}
+.min{
+  height: 24pt;
+  line-height: 32pt;
+  grid-column: 3;
+  grid-row: 1;
+  text-align: center;
+}
+.max{
+  
+  grid-column: 4;
+  grid-row: 1;
+  text-align: center;
+}
+.one {
+  background-color: #0e0101;
+  grid-column: 1;
+  grid-row: 2;
+}
+html, body, #app, #app>div {
+height: 100vh;
+}
+.viewWrapper{
+  grid-column: 2;
+  grid-row: 2;
+}
