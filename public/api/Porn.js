@@ -56,6 +56,7 @@ class Porn{
     getActorsString(){
         var i;
         this.actorsString="";
+        if(typeof this.actors!=="undefined"){
         for(i=0; i<this.actors.length; i++){
             console.log(this.actors[i]);
             if(i>0){
@@ -65,12 +66,14 @@ class Porn{
         }
         this.actorsString=this.actorsString.concat('.');
         console.log(this.actorsString);
+        }
         return this.actorsString;
     }
 
     getTagsString(){
         var i;
         this.tagsString="";
+        if(typeof this.tags!=="undefined"){
         for(i=0; i<this.tags.length; i++){
             console.log(this.tags[i]);
             if(i>0){
@@ -80,6 +83,7 @@ class Porn{
         }
         this.tagsString=this.tagsString.concat('.');
         console.log(this.tagsString);
+        }
         return this.tagsString;
     }
 }

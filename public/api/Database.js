@@ -8,7 +8,7 @@ class Database extends Store{
         var i=0;
         this.pornList=[];
         while(!(typeof memory[i] == 'undefined')){
-            this.pornList = [...this.pornList, new Porn(memory[i].title,memory[i].tags,memory[i].actors)];
+            this.pornList = [...this.pornList, new Porn(memory[i].title,memory[i].tags,memory[i].actors,memory[i].thumbnail)];
             i++;
         }
     }
@@ -27,7 +27,7 @@ class Database extends Store{
     }
 
     addPorn(porn){
-        if(typeof porn === "Porn"){
+        if(porn instanceof Porn){
         this.pornList = [...this.pornList, porn];
         this.savePornList();
         }else{

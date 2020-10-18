@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { Stack, Text, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps } from 'office-ui-fabric-react';
 import './App.css';
@@ -59,7 +60,7 @@ let navTheme = createTheme({
     white: '#3b0606',
   }
 });
-let navStyles: Partial<INavStyles> = {
+let navStyles = {
   root: {
     //width: 200,
     //height: '100vh',
@@ -68,7 +69,7 @@ let navStyles: Partial<INavStyles> = {
   },
 };
 
-let navLinkGroups: INavLinkGroup[] = [
+let navLinkGroups = [
   {
     links: [
       {
@@ -103,6 +104,7 @@ class App extends React.Component {
       navSelectedKey: "key1"
     };
   }
+  // @ts-nocheck
   _onLinkClick(ev?: React.MouseEvent<HTMLElement>, item?: INavLink) {
     if (item && item.name === 'watch') {
       this.setState({ navSelectedKey: "key1" });

@@ -1,8 +1,8 @@
 import React from 'react';
 import './ListView.css';
-import './components/PornListComponent';
+import './components/PornListComponent.tsx';
 import { Stack, Text, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps } from 'office-ui-fabric-react';
-import {PornListComponent} from './components/PornListComponent';
+import {PornListComponent} from './components/PornListComponent.tsx';
 const { ipcRenderer } = window.require("electron");
 
 

@@ -1,8 +1,7 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import './addPorn.css';
-import '../components/tagPicker.tsx';
 import { DefaultButton, Spinner, Image, MessageBarButton, MessageBar, Modal, IconButton, Text, TextField, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps, CommandButton, CommandBarButton } from 'office-ui-fabric-react';
-import TagPicker2 from '../components/tagPicker.tsx';
 const { ipcRenderer } = window.require("electron");
 
 
@@ -84,6 +83,7 @@ export const AddPorn: React.FunctionComponent = (props) => {
     function dimissInfoBox(){
         setShowInfoBox(false);
     }
+
 
     function addPornClick(){
         setSpinLabel("enriching your collection...");

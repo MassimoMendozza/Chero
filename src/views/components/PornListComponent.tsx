@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from 'react';
 import { getRTL } from 'office-ui-fabric-react/lib/Utilities';
 import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react/lib/FocusZone';
@@ -13,6 +14,7 @@ import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import { DefaultButton, IContextualMenuProps, IIconProps, Stack, IStackStyles } from 'office-ui-fabric-react';
 import {AddPorn} from '../addPorn/addPorn';
+import { FetchUrlList } from '../fetchUrlList/fetchUrlList';
 
 
 const { ipcRenderer } = window.require("electron");
@@ -94,12 +96,15 @@ const onRenderCell = (item: IExampleItem, index: number | undefined): JSX.Elemen
 export const PornListComponent: React.FunctionComponent = () => {
     const [originalItems, setOriginalItems] = React.useState(()=>arrayFromDB());
     const [items, setItems] = React.useState(originalItems);
+    const [openFetch, setOpenFetch] = React.useState(false);
     const [openModal, setOpenModal] = React.useState(false);
     const [isListVisible, setIsListVisible] = React.useState(true);
     ipcRenderer.on('closeAddPornModal', function (event, arg) {
         setOpenModal(false);
     })
-
+    ipcRenderer.on('closeFetchFromUrlModal', function (event, arg) {
+        setOpenFetch(false);
+    })
     function arrayFromDB(){
         var a=ipcRenderer.sendSync('getPornList', '');
         var r = []; var i=0;
@@ -120,15 +125,21 @@ export const PornListComponent: React.FunctionComponent = () => {
         console.log('òp');
     }
 
+    const showFetch=()=>{
+        setOpenFetch(true);
+        console.log('òp');
+    }
     return (
         <FocusZone
             // style={{padding: '1em'}}
             className="Form" direction={FocusZoneDirection.vertical}>
             <AddPorn isOpen={openModal}></AddPorn>
+            <FetchUrlList isOpen={openFetch}></FetchUrlList>
             <div className="FormWrapper">
                 <SearchBox className="searchStyle" placeholder="search" onChange={(_, newValue) => onFilterChanged(_, newValue)}></SearchBox>
                 <DefaultButton className='newButton' text="add" allowDisabledFocus iconProps={{iconName: 'add'}} onClick={showModal} />
-                {(isListVisible === true) && <List className="ListStyle" style={{ paddingTop: '1em' }} items={items} onRenderCell={onRenderCell}></List>}
+                <DefaultButton className='fetchButton' text="fetch url list" allowDisabledFocus iconProps={{iconName: 'world'}} onClick={showFetch} />
+                {(isListVisible === true) && <List className="ListStyle" items={items} onRenderCell={onRenderCell}></List>}
             </div>
         </FocusZone>
     );
