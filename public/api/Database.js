@@ -1,5 +1,6 @@
 const Store = require('electron-store');
 const Porn = require('./Porn');
+const HistoryEntry = require('./HistoryEntry')
 
 class Database extends Store{
     constructor(settings){
@@ -8,9 +9,69 @@ class Database extends Store{
         var i=0;
         this.pornList=[];
         while(!(typeof memory[i] == 'undefined')){
-            this.pornList = [...this.pornList, new Porn(memory[i].title,memory[i].tags,memory[i].actors,memory[i].thumbnail)];
+            this.pornList = [...this.pornList, new Porn(memory[i].title,memory[i].tags,memory[i].actors,memory[i].thumbnail,memory[i].url)];
             i++;
         }
+        var memory=this.get('history')|| [];
+        this.history=[];
+        while(!(typeof memory[i] == 'undefined')){
+            this.history = [...this.history, memory[i]];
+            i++;
+        }
+    }
+
+    getTagsArray(){
+        var tagsArray=[];
+        for(var i=0; i<this.pornList.length; i++){
+            var tempTags=this.pornList[i].tagsArray();
+            for(var s=0; s<tempTags.length; s++){
+                var tempLowcase= tempTags[s].toLowerCase();
+                if(!(tagsArray.includes(tempLowcase))){
+                    tagsArray=[...tagsArray, tempLowcase];
+                }
+            }
+        }
+        tagsArray.sort();
+        return tagsArray;
+    }
+
+    addHistory(hash, moodArray, valuesArray, date, weekDay, minutes, outcome){
+        this.history=[...this.history, new HistoryEntry(hash, moodArray, valuesArray, date, weekDay, minutes, outcome)];
+        this.set('history', this.history);
+        return this;
+    };
+
+    getTagsZeroMatrix(){
+        var tagsZeroMatrix = [];
+        var tempTagsArray=getTagsArray();
+        for(var i=0; i<tempTagsArray.length; i++){
+            tagsZeroMatrix[tempTagsArray[i]]=0;
+        }
+        return tagsZeroMatrix;
+    }
+
+    getActorsArray(){
+        var actorsArray=[];
+        for(var i=0; i<this.pornList.length; i++){
+            var tempActors=this.pornList[i].getActors();
+            for(var s=0; s<tempActors.length; s++){
+                var tempLowcase= tempActors[s].toLowerCase();
+                if(!(actorsArray.includes(tempLowcase))){
+                    actorsArray=[...actorsArray, tempLowcase];
+                }
+            }
+        }
+        actorsArray.sort();
+        return actorsArray;
+    }
+
+    getActorsZeroMatrix(){
+        var actorsZeroMatrix = [];
+        var tempActorsArray=getActorsArray();
+        for(var i=0; i<tempActorsArray.length; i++){
+            actorsZeroMatrix[tempActorsArray[i]]=0;
+        }
+        return actorsZeroMatrix;
     }
 
     savePornList(){
@@ -41,10 +102,6 @@ class Database extends Store{
 
     isPresent(porn){
         var i=0;
-        console.log('new');
-        console.log(porn.getHashID());
-        console.log(this.pornList.lenght);
-        console.log('while');
         while(i<this.pornList.length){
             if(this.pornList[i].getHashID()===porn.getHashID()){
                 return true;

@@ -3,14 +3,19 @@ const crypto = require('crypto');
 
 class Porn{
 
-    constructor(title, tags, actors, thumbnail){
+    constructor(title, tags, actors, thumbnail, url){
         this.title = title;
         this.tags = tags;
         this.actors = actors;
         this.thumbnail=thumbnail;
+        this.url=url;
         this.actorsString=this.getActorsString();
         this.tagsString=this.getTagsString();
         this.hashID=this.getHashID();
+    }
+
+    getUrl(){
+        return this.url;
     }
 
     getHashID(){

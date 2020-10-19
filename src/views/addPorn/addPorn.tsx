@@ -93,7 +93,7 @@ export const AddPorn: React.FunctionComponent = (props) => {
             setGotchaPadding('7em');
             setShowInfoBox(true);
         }else{
-            var msg = ipcRenderer.sendSync('addPornAdding', [titleValue, actorsValue, tagsValue, thumbValue]);
+            var msg = ipcRenderer.sendSync('addPornAdding', [titleValue, actorsValue, tagsValue, thumbValue, urlValue]);
             if(msg === 'ok'){
                 setIsFetching(false);
                 toggleModal();

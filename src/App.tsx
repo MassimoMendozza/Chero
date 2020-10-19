@@ -5,7 +5,6 @@ import './App.css';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 import ViewWrapper from'./views/ViewWrapper';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
-const { ipcRenderer } = window.require("electron");
 
 //theme
 let myTheme = createTheme({
