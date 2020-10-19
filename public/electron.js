@@ -92,10 +92,12 @@ function createWindow() {
   console.log("USERDATA IS");
   console.log(app.getPath('userData'));
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
-        minheight: 800,
-        minwidth: 600,
+        width: 1024,
+        height: 768,
+        minheight: 1024,
+        minwidth: 768,
+        'min-Height': 800,
+        'min-Width' : 600,
         show: false,  
         frame:false,
         webPreferences: {

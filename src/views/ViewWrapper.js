@@ -1,8 +1,7 @@
 import React from 'react';
-import WatchView from './WatchView';
+import {WatchView} from './WatchView.tsx';
 import ListView from './ListView';
 import { Stack, Text, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps } from 'office-ui-fabric-react';
-
 
 class ViewWrapper extends React.Component {
     static getDerivedStateFromProps(props, state) {

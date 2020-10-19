@@ -83,7 +83,7 @@ let navLinkGroups = [
         key: 'key2',
       },
       {
-        name: 'feelings',
+        name: 'history',
         icon: 'reminderperson',
         key: 'key3',
       },
