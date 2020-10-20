@@ -88,7 +88,7 @@ export const AddPorn: React.FunctionComponent = (props) => {
     function addPornClick(){
         setSpinLabel("enriching your collection...");
         setIsFetching(true);
-        if((titleValue==='')||(tagsValue==='')||(actorsValue==='')||(urlValue=='')||(thumbValue==='')){
+        if((titleValue==='')||(tagsValue==='')||(urlValue=='')){
             setInfoLabel("one or more field are empty, check pls");
             setGotchaPadding('7em');
             setShowInfoBox(true);
