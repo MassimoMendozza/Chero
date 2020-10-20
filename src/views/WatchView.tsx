@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Clock from 'react-live-clock';
 import './WatchView.css';
 import { useBoolean } from '@uifabric/react-hooks';
-import { TeachingBubble, Slider, Dropdown, DropdownMenuItemType, Stack, Text, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps, Button, ActionButton } from 'office-ui-fabric-react';
+import {TeachingBubble, Slider, Dropdown, DropdownMenuItemType, Stack, Text, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps, Button, ActionButton } from 'office-ui-fabric-react';
 import { PornListComponent } from './components/PornListComponent';
 const { ipcRenderer } = window.require("electron");
 
@@ -50,19 +50,19 @@ export const WatchView: React.FunctionComponent = (props) => {
     const [musValue, setMusValue] = React.useState(0);
     const [titValue, setTitValue] = React.useState(0);
 
-    const beaOnChange = (value: number) => setBeaValue((value + 100) / 200);
-    const amaOnChange = (value: number) => setAmaValue((value + 100) / 200);
-    const tumOnChange = (value: number) => setTumValue((value + 100) / 200);
-    const wetOnChange = (value: number) => setWetValue((value + 100) / 200);
-    const vagOnChange = (value: number) => setVagValue((value + 100) / 200);
-    const penOnChange = (value: number) => setPenValue((value + 100) / 200);
-    const assOnChange = (value: number) => setAssValue((value + 100) / 200);
-    const feeOnChange = (value: number) => setFeeValue((value + 100) / 200);
-    const legOnChange = (value: number) => setLegValue((value + 100) / 200);
-    const armOnChange = (value: number) => setArmValue((value + 100) / 200);
-    const musOnChange = (value: number) => setMusValue((value + 100) / 200);
-    const titOnChange = (value: number) => setTitValue((value + 100) / 200);
-
+    const beaOnChange = (value: number) => setBeaValue((value+100)/200);
+    const amaOnChange = (value: number) => setAmaValue((value+100)/200);
+    const tumOnChange = (value: number) => setTumValue((value+100)/200);
+    const wetOnChange = (value: number) => setWetValue((value+100)/200);
+    const vagOnChange = (value: number) => setVagValue((value+100)/200);
+    const penOnChange = (value: number) => setPenValue((value+100)/200);
+    const assOnChange = (value: number) => setAssValue((value+100)/200);
+    const feeOnChange = (value: number) => setFeeValue((value+100)/200);
+    const legOnChange = (value: number) => setLegValue((value+100)/200);
+    const armOnChange = (value: number) => setArmValue((value+100)/200);
+    const musOnChange = (value: number) => setMusValue((value+100)/200);
+    const titOnChange = (value: number) => setTitValue((value+100)/200);
+    
 
     /*useEffect(() => {
         setOpen(props.isOpen);
@@ -75,50 +75,50 @@ export const WatchView: React.FunctionComponent = (props) => {
             );
         }
     };
-    function openPlayer() {
+    function openRandomPlayer() {
         if (selectedMoods.length === 0) {
-            if (!teachingBubbleVisible) {
+            if(!teachingBubbleVisible){
                 toggleTeachingBubbleVisible();
             }
         } else {
-            ipcRenderer.send('openPlayer', [getMoodArray(), getValuesArray()]);
+            ipcRenderer.send('openRandomPlayer');
             setIsJustRandomOpen(false);
             setIsPlayerOpen(true);
         }
 
     }
-    function getMoodArray() {
-        var moodArray = {};
-        for (var i = 0; i < options.length; i++) {
-            moodArray[options[i].key.toString()] = 0;
+    function getMoodArray(){
+        var moodArray=[];
+        for(var i=0; i<options.length; i++){
+            moodArray[options[i].key.toString()]=0;
         }
-        for (var i = 0; i < selectedMoods.length; i++) {
-            moodArray[selectedMoods[i]] = 1;
+        for(var i=0; i<selectedMoods.length; i++){
+            moodArray[selectedMoods[i]]=1;
         }
         return moodArray;
     }
-    function getValuesArray() {
-        var valueArray = {};
-        valueArray['bea'] = beaValue;
-        valueArray['ama'] = amaValue;
-        valueArray['tum'] = tumValue;
-        valueArray['wet'] = wetValue;
-        valueArray['vag'] = vagValue;
-        valueArray['pen'] = penValue;
-        valueArray['ass'] = assValue;
-        valueArray['fee'] = feeValue;
-        valueArray['leg'] = legValue;
-        valueArray['arm'] = armValue;
-        valueArray['mus'] = musValue;
-        valueArray['tit'] = titValue;
+    function getValuesArray(){
+        var valueArray=[];
+        valueArray['bea']=beaValue;
+        valueArray['ama']=amaValue;
+        valueArray['tum']=tumValue;
+        valueArray['wet']=wetValue;
+        valueArray['vag']=vagValue;
+        valueArray['pen']=penValue;
+        valueArray['ass']=assValue;
+        valueArray['fee']=feeValue;
+        valueArray['leg']=legValue;
+        valueArray['arm']=armValue;
+        valueArray['mus']=musValue;
+        valueArray['tit']=titValue;
         return valueArray;
     }
-    function wrongClick() {
+    function wrongClick(){
         console.log('wrclicked');
-        ipcRenderer.send('wrongClick', [watchedPorn.hashID, getMoodArray(), getValuesArray()]);
+        ipcRenderer.send('wrongClick', [watchedPorn.hashID,getMoodArray(), getValuesArray()]);
     }
-    function orgasmClick() {
-        ipcRenderer.send('orgasmClick', [watchedPorn.hashID, getMoodArray(), getValuesArray()]);
+    function orgasmClick(){
+        ipcRenderer.send('orgasmClick', [watchedPorn.hashID,getMoodArray(), getValuesArray()]);
     }
     ipcRenderer.on('came', function (event, arg) {
         setIsPlayerOpen(false);
@@ -127,46 +127,23 @@ export const WatchView: React.FunctionComponent = (props) => {
     ipcRenderer.on('pornToWatch', function (event, arg) {
         console.log(arg);
         setWatchedPorn(arg);
-        if (arg.url.includes("pornhub.com")) {
-            var temp = arg.url.split('?');
-            console.log(arg.url);
-            for (var i = 0; i < temp.length; i++) {
-                if (temp[i].toString().includes('viewkey')) {
-                    console.log('fratm');
-                    console.log(temp[i]);
-                    setEmbedSrc('http://www.pornhub.com/embed/' + temp[i].slice(8));
-                }
-            }
-        }else if(arg.url.includes("youporn.com")){
-            var temp = arg.url.split('/');
-            console.log(arg.url);
-            for (var i = 0; i < temp.length; i++) {
-                if (temp[i].toString().includes('video')) {
-                    setEmbedSrc('http://www.youporn.com/embed/' + temp[i+1]);
-                }
-            }
-        }else if(arg.url.includes("xvideos.com")){
-
-            var temp = arg.url.split('/');
-            console.log(arg.url);
-            for (var i = 0; i < temp.length; i++) {
-                if (temp[i].toString().includes('video')) {
-                    setEmbedSrc('http://www.xvideos.com/embedframe/' + temp[i].slice(5));
-                }
+        var temp = arg.url.split('?');
+        console.log(arg.url);
+        for(var i=0; i<temp.length; i++){
+            if(temp[i].toString().includes('viewkey')){
+                console.log('fratm');
+                console.log(temp[i]);
+                setEmbedSrc('http://www.pornhub.com/embed/'+temp[i].slice(8));
             }
         }
+        console.log('yobro');
 
+        console.log(embedSrc);
     });
     const examplePrimaryButtonProps: IButtonProps = {
-        children: 'gotcha',
-        onClick: toggleTeachingBubbleVisible,
+      children: 'gotcha',
+      onClick: toggleTeachingBubbleVisible,
     };
-    function train() {
-        ipcRenderer.send('trainNet');
-    }
-    function eVal() {
-        ipcRenderer.send('evaluateNet', [getMoodArray(), getValuesArray()]);
-    }
     return (
         <div className="View2">
             <Text className="Title" variant="xxLarge" >feeling excited?</Text>
@@ -178,21 +155,21 @@ export const WatchView: React.FunctionComponent = (props) => {
                     {(isJustRandomOpen === true) && <div className="justRandom">
                         <Text className="justRandomText" variant="xLarge" >you have no sufficient history to make predicitons<br />tell us how u feel and we'll randomly propose you material to like or not </Text>
                         <br /><br />
-                        <Button onClick={openPlayer}>Start</Button>
+                        <Button onClick={openRandomPlayer}>Start</Button>
                     </div>}
                     {(isPlayerOpen === true) &&
                         <div>
                             <iframe className="player" src={embedSrc} frameborder="0" scrolling="no"></iframe>
                             <div className="teatherButton">
-                                <ActionButton onClick={wrongClick} iconProps={{ iconName: 'dislike' }} title="Emoji" ariaLabel="Emoji" text="kinda wrong" />
-                                <ActionButton onClick={orgasmClick} className="cameButton" iconProps={{ iconName: 'glimmer' }} title="Emoji" ariaLabel="Emoji" text="got the orgasm!" />
+                            <ActionButton onClick={wrongClick} iconProps={{iconName: 'dislike'}} title="Emoji" ariaLabel="Emoji" text="kinda wrong"/>
+                            <ActionButton onClick={orgasmClick} className="cameButton" iconProps={{iconName: 'glimmer'}} title="Emoji" ariaLabel="Emoji" text="got the orgasm!"/>
                             </div>
                         </div>}
 
                     {(isJustRandomOpen === true) && <div className="justRandom">
                         <Text className="justRandomText" variant="xLarge" >you have no sufficient history to make predicitons<br />tell us how u feel and we'll randomly propose you material to like or not </Text>
                         <br /><br />
-                        <Button onClick={openPlayer}>Start</Button>
+                        <Button onClick={openRandomPlayer}>Start</Button>
                     </div>}
                     {(came === true) && <div className="justRandom">
                         <Text className="justRandomText" variant="xLarge" >you came</Text>
@@ -217,7 +194,7 @@ export const WatchView: React.FunctionComponent = (props) => {
                             </TeachingBubble>
                         )}
                         <Dropdown
-                            id="sideMood"
+                        id="sideMood"
                             className="sideMood"
                             placeholder="Select options"
                             label="moods"
