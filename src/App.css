@@ -6,8 +6,7 @@
   grid-template-columns: 200px 1fr;
   grid-template-rows: 24pt 1fr;
 }
-.titlebar{
-  -webkit-app-region: drag;line-height: 24pt;
+.titlebar{line-height: 24pt;
   grid-row: 1;
   grid-column: 1/5;
   color: white;
@@ -18,7 +17,14 @@
   grid-template-columns: 200px 1fr 50px 50px 50px;
 }
 .windowname{
+  -webkit-app-region: drag;
   grid-column: 1;
+  grid-row: 1;
+  text-align: center;
+}
+.windowbar{
+  -webkit-app-region: drag;
+  grid-column: 2;
   grid-row: 1;
   text-align: center;
 }

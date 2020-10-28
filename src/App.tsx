@@ -3,8 +3,9 @@ import React from 'react';
 import { Stack, Text, Link, FontWeights, createTheme, Nav, INavLink, INavStyles, INavLinkGroup, loadTheme, IIconProps } from 'office-ui-fabric-react';
 import './App.css';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
-import ViewWrapper from'./views/ViewWrapper';
+import ViewWrapper from './views/ViewWrapper';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
+const { ipcRenderer } = window.require("electron");
 
 //theme
 let myTheme = createTheme({
@@ -114,18 +115,28 @@ class App extends React.Component {
 
     }
   }
+  minimize() {
+    ipcRenderer.send('minimize');
+  }
+  toggleMax(){
+    ipcRenderer.send('maximize');
+  }
+  close(){
+    ipcRenderer.send('close');
+  }
   render() {
     return (
       <div className="App">
         <div className="titlebar">
           <div className="titlebarwrapper" >
-          <div className="windowname">chero</div>
-          <div className="close"><FontIcon iconName="ChromeClose"/></div>
-          <div className="min"><FontIcon iconName="ChromeMinimize"/></div>
-          <div className="max"><FontIcon iconName="checkbox"/></div>
+            <div className="windowname">chero</div>
+            <div className="windowbar"></div>
+            <div className="close" onClick={this.close}><FontIcon iconName="ChromeClose" /></div>
+            <div className="min" onClick={this.minimize}><FontIcon iconName="ChromeMinimize" /></div>
+            <div className="max" onClick={this.toggleMax}><FontIcon iconName="checkbox" /></div>
           </div>
-            
-            
+
+
         </div>
         <div
           className="one">
@@ -137,7 +148,7 @@ class App extends React.Component {
             groups={navLinkGroups}
           />
         </div>
-        <ViewWrapper navkey={this.state.navSelectedKey}/>
+        <ViewWrapper navkey={this.state.navSelectedKey} />
       </div>
     );
   }

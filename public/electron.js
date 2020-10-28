@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Main } = require('electron');
+const { app, BrowserWindow, Main, ipcRenderer } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const { ipcMain } = require('electron');
@@ -22,6 +22,21 @@ var seenPornlist = [];
 ipcMain.on('getPornList', (event, arg) => {
   event.returnValue = MainDB.getPornList();
 })
+
+ipcMain.on('minimize', (event,arg)=>{
+  mainWindow.minimize();
+})
+
+ipcMain.on('maximize', (event, args)=>{
+  console.log('bro');
+  mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize();
+})
+
+
+ipcMain.on('close', (event, args)=>{
+  mainWindow.close();
+})
+
 let mainWindow;
 ipcMain.on('addPornAdding', (event, arg) => {
   var temp2 = getArrayFromCommedString(arg[2].toString());
